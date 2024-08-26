@@ -1,45 +1,57 @@
-*{
+/* Basic Reset */
+* {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
+    text-transform: capitalize;
 }
-.container{
+
+/* Body and Container Styles */
+.container {
     width: 100%;
     height: 100vh;
     padding: 10px;
-    background: linear-gradient(135deg, #153677,#4e085f);
+    background: linear-gradient(135deg, #153677, #4e085f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.todo-app{
 
+.todo-app {
     background-color: #fff;
     width: 100%;
-    max-width: 540px;  
+    max-width: 540px;
     margin: 100px auto 20px;
     padding: 40px 30px 70px;
     border-radius: 10px;
 }
-.todo-app h2{
+
+.todo-app h2 {
     color: #002765;
     display: flex;
     align-items: center;
+    font-size: 1.5rem; /* Responsive font size */
     margin-bottom: 20px;
 }
-.todo-app h2 img{
+
+.todo-app h2 img {
     width: 30px;
     margin-left: 10px;
 }
 
-.todo-app .row{
-    display: flex; 
+/* Row for Input and Button */
+.todo-app .row {
+    display: flex;
     align-items: center;
     justify-content: space-between;
     background: #edeef0;
     border-radius: 30px;
-    padding-left: 20px;
+    padding: 5px; /* Added padding */
     margin-bottom: 25px;
 }
-.todo-app .row input{
+
+.todo-app .row input {
     flex: 1;
     background: transparent;
     border: none;
@@ -47,13 +59,121 @@
     padding: 10px;
     font-size: 14px;
 }
-.todo-app .row button{
+
+.todo-app .row button {
     border: none;
     outline: none;
-    padding: 16px 50px;
+    padding: 16px 30px; /* Adjusted padding */
     background: #ff5945;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
     border-radius: 40px;
-    }   
+}
+
+/* To-Do List Styles */
+.todo-app ul {
+    padding: 0;
+}
+
+.todo-app ul li {
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+ul li::before {
+    content: "";
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(../images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 12px;
+    left: 8px;
+}
+
+ul li.checked {
+    color: #555;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background-image: url(../images/checked.png);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+ul li span:hover {
+    background: #edeef0;
+    transition: 0.3s;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .todo-app {
+        padding: 30px 20px 50px; /* Adjust padding for smaller screens */
+    }
+
+    .todo-app h2 {
+        font-size: 1.25rem;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 10px; /* Adds space between input and button */
+        padding-left: 0;
+    }
+
+    .row input {
+        width: 100%; /* Full width input on small screens */
+        padding: 15px; /* Increased padding for better touch usability */
+        font-size: 16px;
+    }
+
+    .row button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px; /* Adjusted padding */
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .todo-app {
+        padding: 20px 15px 40px; /* Further adjustments for very small screens */
+    }
+
+    .todo-app h2 {
+        font-size: 1rem;
+    }
+
+    .row input {
+        font-size: 14px;
+    }
+
+    .row button {
+        font-size: 14px;
+    }
+
+    ul li {
+        font-size: 15px;
+    }
+}
